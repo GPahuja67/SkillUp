@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SkillUp • Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- LEFT : CHAT LIST -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Chats</h2>
+        </div>
+
+        <div id="chatList" class="chat-list">
+            <!-- injected by JS -->
+        </div>
+    </aside>
+
+    <!-- RIGHT : CHAT AREA -->
+    <main class="chat-area">
+        <div class="chat-header" id="activeChatHeader">
+            Select a chat
+        </div>
+
+        <div class="chat-box" id="chatBox"></div>
+
+        <div class="chat-input">
+            <input id="messageInput" placeholder="Type a message..." />
+            <button id="sendBtn">Send</button>
+        </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="rightbar">
+        <h3>Notifications</h3>
+        <ul id="notificationList">
+            <li>No new notifications</li>
+        </ul>
+    </aside>
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

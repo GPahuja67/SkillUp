@@ -1,0 +1,122 @@
+/* client/css/navbar.css */
+
+/* bottom-fixed pill navbar */
+.pill-navbar {
+    position: fixed;
+    bottom: calc(20px + env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    z-index: 9999;
+    pointer-events: none; /* children handle pointer events */
+}
+
+/* pill container */
+.pill-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 12px 28px;
+    display: flex;
+    gap: 22px;
+    align-items: flex-end;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(8px);
+    border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+    pointer-events: auto;
+}
+
+/* each pill */
+.pill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 58px;
+}
+
+/* clickable circle */
+.pill-btn {
+    width: 56px;
+    height: 56px;
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+    outline: none;
+}
+
+/* anchor variant for login/register */
+.pill-link { text-decoration:none; display:grid; place-items:center; width:56px; height:56px; border-radius:999px; }
+
+/* icon default */
+.pill-icon i, .pill-highlight-inner i {
+    font-size: 20px;
+    color: #7c3aed;
+}
+
+/* label under each pill */
+.pill-label {
+    font-size: 12px;
+    color: #4b2e83;
+    opacity: 0.95;
+    user-select: none;
+}
+
+/* profile picture style */
+.pill-item.profile-item img#navPic {
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.12);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* active pill pushes up and gets a soft shadow */
+.pill-item.active .pill-btn {
+    transform: translateY(-22px) scale(1.06);
+    box-shadow: 0 14px 40px rgba(124,58,237,0.12);
+}
+
+/* highlight circle above active pill */
+.pill-highlight {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events:none;
+    transition: left .22s cubic-bezier(.2,.9,.2,1);
+    width: 64px;
+    height: 64px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index: 20;
+}
+
+.pill-highlight-inner {
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(255,255,255,0.92));
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.pill-highlight-inner i { color: #ff6fb0; }
+
+/* responsive tweaks */
+@media (max-width: 720px) {
+    .pill-nav-list { gap: 10px; padding: 10px 16px; }
+    .pill-btn { width: 48px; height: 48px; }
+    .pill-item.profile-item img#navPic { width: 42px; height: 42px; }
+    .pill-highlight-inner { width:48px; height:48px; }
+}

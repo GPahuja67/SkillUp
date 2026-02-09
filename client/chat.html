@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SkillUp Chat</title>
+    <link rel="stylesheet" href="css/chat.css">
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="chat-header" id="chatUser">Skill Chat</div>
+
+    <div id="messages" class="chat-box"></div>
+
+    <div class="chat-input">
+        <input id="msg" type="text" placeholder="Type your message..." />
+        <button id="sendBtn">Send</button>
+    </div>
+</div>
+
+<!-- IMPORTANT: socket.io FIRST -->
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/chat.js"></script>
+
+</body>
+</html>

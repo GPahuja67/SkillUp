@@ -1,0 +1,38 @@
+SkillUp/
+│
+├── client/
+│   ├── index.html
+│   ├── createprofile.html
+│   ├── login.html
+│   ├── signup.html
+│   ├── dashboard.html    ✅ NEW
+│   ├── css/
+│   └── js/
+│
+└── server/
+    ├── config/
+    │   └── db.js
+    │
+    ├── models/
+    │   ├── User.js
+    │   ├── Profile.js
+    │   └── Request.js        ✅ NEW
+    │
+    ├── controllers/
+    │   ├── authController.js
+    │   ├── profileController.js
+    │   └── requestController.js
+    │
+    ├── middleware/
+    │   └── authMiddleware.js
+    │
+    ├── routes/
+    │   ├── authRoutes.js
+    │   ├── profileRoutes.js
+    │   └── requestRoutes.js   ✅ NEW
+    │
+    ├── server.js
+    └── package.json
+
+
+skillup-2

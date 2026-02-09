@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SkillUp - Create Your Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="css/createprofile.css">
+
+
+ 
+</head>
+<body>
+  <div class="floating-shape s1"></div>
+  <div class="floating-shape s2"></div>
+  <div class="floating-shape s3"></div>
+  <div class="floating-shape s4"></div>
+
+  <div class="container">
+    <div class="header">
+      <div class="brand-logo">SkillUp</div>
+      <p class="subtitle">Let's create your personalized learning profile</p>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text" id="progressText">Step 1 of 6</div>
+    </div>
+
+    <div class="question-container">
+      <!-- Question 1: Interests -->
+      <div class="question active" data-question="1">
+        <h2 class="question-title">What are your main interests?</h2>
+        <p class="question-subtitle">Select all areas you'd like to explore or improve</p>
+        <div class="checkbox-group" id="interestsGroup">
+          <div class="checkbox-item">
+            <input type="checkbox" id="tech" value="technology">
+            <label for="tech">💻 Technology & Programming</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="design" value="design">
+            <label for="design">🎨 Design & Creative Arts</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="business" value="business">
+            <label for="business">📈 Business & Marketing</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="language" value="language">
+            <label for="language">🗣️ Languages</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="music" value="music">
+            <label for="music">🎵 Music & Audio</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="fitness" value="fitness">
+            <label for="fitness">💪 Fitness & Health</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 2: Learning Time -->
+      <div class="question" data-question="2">
+        <h2 class="question-title">When do you prefer to learn?</h2>
+        <p class="question-subtitle">Choose your ideal learning schedule</p>
+        <div class="options-grid">
+          <div class="option-card" data-value="morning">
+            <span class="option-icon">🌅</span>
+            <span class="option-text">Morning<br>(6AM - 12PM)</span>
+          </div>
+          <div class="option-card" data-value="afternoon">
+            <span class="option-icon">☀️</span>
+            <span class="option-text">Afternoon<br>(12PM - 6PM)</span>
+          </div>
+          <div class="option-card" data-value="evening">
+            <span class="option-icon">🌆</span>
+            <span class="option-text">Evening<br>(6PM - 10PM)</span>
+          </div>
+          <div class="option-card" data-value="flexible">
+            <span class="option-icon">🔄</span>
+            <span class="option-text">Flexible<br>Anytime</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 3: Session Duration -->
+      <div class="question" data-question="3">
+        <h2 class="question-title">How long are your ideal learning sessions?</h2>
+        <p class="question-subtitle">Select your preferred session duration</p>
+        <div class="slider-container">
+          <input type="range" min="15" max="180" value="60" class="slider" id="durationSlider">
+          <div class="slider-value" id="durationValue">60 minutes</div>
+        </div>
+      </div>
+
+      <!-- Question 4: Location Preference -->
+      <div class="question" data-question="4">
+        <h2 class="question-title">Where do you prefer to learn?</h2>
+        <p class="question-subtitle">Choose your ideal learning environment</p>
+        <div class="options-grid">
+          <div class="option-card" data-value="online">
+            <span class="option-icon">💻</span>
+            <span class="option-text">Online Only</span>
+          </div>
+          <div class="option-card" data-value="in-person">
+            <span class="option-icon">🏢</span>
+            <span class="option-text">In-Person Only</span>
+          </div>
+          <div class="option-card" data-value="hybrid">
+            <span class="option-icon">🔄</span>
+            <span class="option-text">Hybrid<br>(Both)</span>
+          </div>
+          <div class="option-card" data-value="home">
+            <span class="option-icon">🏠</span>
+            <span class="option-text">From Home</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 5: Skill Level -->
+      <div class="question" data-question="5">
+        <h2 class="question-title">What's your current skill level?</h2>
+        <p class="question-subtitle">Help us match you with appropriate learning partners</p>
+        <div class="options-grid">
+          <div class="option-card" data-value="beginner">
+            <span class="option-icon">🌱</span>
+            <span class="option-text">Beginner<br>Just starting out</span>
+          </div>
+          <div class="option-card" data-value="intermediate">
+            <span class="option-icon">📈</span>
+            <span class="option-text">Intermediate<br>Some experience</span>
+          </div>
+          <div class="option-card" data-value="advanced">
+            <span class="option-icon">⭐</span>
+            <span class="option-text">Advanced<br>Highly skilled</span>
+          </div>
+          <div class="option-card" data-value="expert">
+            <span class="option-icon">🏆</span>
+            <span class="option-text">Expert<br>Professional level</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question 6: Profile Picture -->
+      <div class="question" data-question="6">
+        <h2 class="question-title">Add your profile picture</h2>
+        <p class="question-subtitle">Help others recognize you with a friendly photo</p>
+        <div class="profile-pic-container">
+          <div class="profile-pic-preview" id="profilePicPreview" onclick="document.getElementById('profilePicInput').click()">
+            <span class="profile-pic-placeholder">📷</span>
+          </div>
+          <input type="file" id="profilePicInput" class="hidden-input" accept="image/*">
+          <p class="upload-subtext">Click to upload your profile picture</p>
+        </div>
+      </div>
+
+      <!-- Question 7: Expertise Skills -->
+      <div class="question" data-question="7">
+        <h2 class="question-title">Describe your expertise</h2>
+        <p class="question-subtitle">Tell us about your skills, experience, and what you can teach others</p>
+        <div class="input-group">
+          <textarea class="input-field" id="expertiseSkills" placeholder="Describe your professional skills, years of experience, certifications, areas of expertise, and what you'd love to teach or share with others..." rows="5"></textarea>
+        </div>
+      </div>
+
+      <!-- Question 8: Portfolio Upload -->
+      <div class="question" data-question="8">
+        <h2 class="question-title">Showcase your work</h2>
+        <p class="question-subtitle">Upload photos, videos, or documents that demonstrate your skills</p>
+        <div class="upload-area" id="portfolioUploadArea">
+          <i class="fas fa-cloud-upload-alt upload-icon"></i>
+          <div class="upload-text">Drag and drop your files here</div>
+          <div class="upload-subtext">or click to browse (Images, Videos, PDFs up to 10MB each)</div>
+          <input type="file" id="portfolioInput" class="hidden-input" multiple accept="image/*,video/*,.pdf,.doc,.docx">
+        </div>
+        <div class="file-preview-grid" id="filePreviewGrid"></div>
+      </div>
+
+      <!-- Question 9: Goals -->
+      <div class="question" data-question="9">
+        <h2 class="question-title">What are your main learning goals?</h2>
+        <p class="question-subtitle">Tell us what you hope to achieve</p>
+        <div class="input-group">
+          <textarea class="input-field" id="goals" placeholder="Describe your learning goals, career aspirations, or what you'd like to accomplish through skill sharing..." rows="4"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="navigation">
+      <button class="nav-btn btn-prev" id="prevBtn" onclick="previousQuestion()" style="visibility: hidden;">Previous</button>
+      <button class="nav-btn btn-next" id="nextBtn" onclick="nextQuestion()">Next</button>
+    </div>
+  </div>
+
+  <script src="js/createprofile.js"></script>
+
+</body>
+</html>

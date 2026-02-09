@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>SkillUp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<header class="navbar">
+    <div class="nav-inner">
+
+        <!-- LOGO + TEXT -->
+        <div class="logo">
+            <img src="assets/logo.png" alt="SkillUp Logo">
+            <span class="logo-text">SkillUp</span>
+        </div>
+
+        <nav>
+            <a href="#how">How it works</a>
+            <a href="#community">Community</a>
+            <a href="explore.html">Explore</a>
+
+            <!-- Join button (logged OUT) -->
+            <a id="joinBtn" href="login.html" class="btn">Join Us!!</a>
+
+            <!-- Profile picture (logged IN) -->
+            <div class="profile-wrapper" style="position:relative;">
+                <img
+                        id="headerProfilePic"
+                        src=""
+                        alt="Profile"
+                        style="display:none;width:42px;height:42px;border-radius:50%;object-fit:cover;cursor:pointer;"
+                />
+
+                <!-- Dropdown -->
+                <div id="profileDropdown" class="profile-dropdown" style="display:none;">
+                    <div class="dropdown-item" id="goExplore">Explore</div>
+                    <div class="dropdown-item logout" id="logoutBtn">Logout</div>
+                </div>
+            </div>
+
+        </nav>
+
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="hero-inner">
+            <h1>Exchange skills.<br>Build connections.</h1>
+            <p>
+                Learn what you want, teach what you know.
+                A global skill barter community — no money involved.
+            </p>
+            <div class="hero-cta">
+                <a class="btn big" href="login.html">Join SkillUp</a>
+                <a class="link" href="#community">Meet our Team →</a>
+            </div>
+        </div>
+    </section>
+    <section class="stats">
+        <div class="stats-inner">
+            <div><strong>10,247</strong><span>Members</span></div>
+            <div><strong>523</strong><span>Skills</span></div>
+            <div><strong>25,891</strong><span>Exchanges</span></div>
+        </div>
+    </section>
+    <section id="how" class="section purple">
+        <div class="section-inner">
+            <h2>How it works</h2>
+            <p class="section-sub">Simple, human, and community-driven.</p>
+            <div class="steps">
+                <div>
+                    <span>01</span>
+                    <h4>Create profile</h4>
+                    <p>Show what you can teach and what you want to learn.</p>
+                </div>
+                <div>
+                    <span>02</span>
+                    <h4>Find matches</h4>
+                    <p>Connect with people who complement your skills.</p>
+                </div>
+                <div>
+                    <span>03</span>
+                    <h4>Exchange</h4>
+                    <p>Learn together, grow together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="community" class="section blue">
+        <div class="section-inner">
+            <h2>Meet the community</h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <img src="assets/gaurika.jpeg" alt="Gaurika Pahuja" class="profile-img">
+                    <h4>Gaurika Pahuja</h4>
+                    <small>Project Designer & Lead Project Executioner</small>
+                    <p class="tag">Project Design + Implementation</p>
+                    <p class="learn">Database Manager</p>
+                    <p class="learn">Debugger + File Analysis</p>
+                </div>
+
+                <div class="card">
+                    <img src="assets/vanshita.jpeg" alt="Vanshita Sharma" class="profile-img">
+                    <h4>Vanshita Sharma</h4>
+                    <small>Workflow Manager & Test Case Handler</small>
+                    <p class="tag">Test Case Management</p>
+                    <p class="learn">Testing + Workflow Management</p>
+                </div>
+
+                <div class="card">
+                    <img src="assets/chirag.jpeg" alt="Chirag Bansal" class="profile-img">
+                    <h4>Chirag Bansal</h4>
+                    <small>CSS & Structure Designer</small>
+                    <p class="tag">CSS Management</p>
+                    <p class="learn">Folder & File Structure Handling</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="join" class="cta">
+        <div class="cta-inner">
+            <h2>Start learning from people who inspire you</h2>
+            <p>Knowledge grows when shared.</p>
+            <a class="btn big" href="#">Join SkillUp</a>
+        </div>
+    </section>
+</main>
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+            <h3>SkillUp</h3>
+            <p>
+                Connect. Learn. Grow. Join thousands of professionals and learners
+                transforming their careers through collaborative skill exchange.
+            </p>
+
+            <div class="footer-social">
+                <a href="#" class="social-link" title="Facebook">📘</a>
+                <a href="#" class="social-link" title="Twitter">🐦</a>
+                <a href="#" class="social-link" title="LinkedIn">💼</a>
+                <a href="#" class="social-link" title="Instagram">📸</a>
+            </div>
+        </div>
+
+        <!-- Platform -->
+        <div class="footer-section">
+            <h4>Platform</h4>
+            <ul>
+                <li><a href="#">Browse Skills</a></li>
+                <li><a href="#">Find Mentors</a></li>
+                <li><a href="#">Success Stories</a></li>
+                <li><a href="#">Mobile App</a></li>
+            </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="footer-section">
+            <h4>Support</h4>
+            <ul>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Guidelines</a></li>
+                <li><a href="#">Safety</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Company -->
+        <div class="footer-section">
+            <h4>Company</h4>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Bottom -->
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <p>© 2025 SkillUp. All rights reserved.</p>
+
+            <div class="footer-bottom-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Cookies</a>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="js/index.js"></script>
+
+
+</body>
+</html>

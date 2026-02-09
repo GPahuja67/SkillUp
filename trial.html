@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pill Navbar Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body{
+            background:#ececff;
+            font-family: "Inter", sans-serif;
+        }
+
+        /* navbar.css - pill navbar style */
+        .pill-navbar {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            z-index: 50;
+            pointer-events: none;
+        }
+
+        .pill-nav-list {
+            list-style: none;
+            margin: 0;
+            padding: 12px 28px;
+            display: flex;
+            gap: 22px;
+            align-items: flex-end;
+            background: #ffffff;
+            border-radius: 999px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+            pointer-events: auto;
+        }
+
+        /* pill item */
+        .pill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            min-width: 58px;
+        }
+
+        /* circular button */
+        .pill-btn {
+            width: 56px;
+            height: 56px;
+            background: #ffffff;
+            border: none;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: transform .15s ease, box-shadow .15s ease;
+            outline: none;
+        }
+
+        .pill-btn:hover {
+            transform: scale(1.03);
+        }
+
+        /* icon style */
+        .pill-icon i, .pill-highlight-inner i {
+            font-size: 20px;
+            color: #7c3aed;
+        }
+
+        /* label under icon */
+        .pill-label {
+            font-size: 12px;
+            color: #6b21a8;
+            opacity: 0.95;
+        }
+
+        /* profile pic */
+        .pill-item.profile-item img#navPic {
+            width: 48px;
+            height: 48px;
+            border-radius: 999px;
+            object-fit: cover;
+            border: 2px solid rgba(0,0,0,0.15);
+        }
+
+        /* active item look */
+        .pill-item.active .pill-btn {
+            transform: translateY(-22px) scale(1.06);
+            box-shadow: 0 10px 30px rgba(124,58,237,0.16);
+        }
+
+        /* floating highlight */
+        .pill-highlight {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 64px;
+            height: 64px;
+            pointer-events:none;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            z-index:20;
+            transition: left .22s cubic-bezier(.2,.9,.2,1);
+        }
+
+        .pill-highlight-inner {
+            width: 56px;
+            height: 56px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #fff, #fafafa);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+
+        .pill-highlight-inner i {
+            color: #ff6fb0;
+        }
+
+        /* responsiveness */
+        @media (max-width:720px) {
+            .pill-nav-list { gap:12px; padding:10px 18px; }
+            .pill-item { min-width:48px; }
+            .pill-btn { width:46px; height:46px; }
+            .pill-highlight-inner { width:48px; height:48px; }
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+<!-- ============== NAVBAR DEMO ============== -->
+<nav class="pill-navbar">
+    <ul class="pill-nav-list">
+
+        <li class="pill-item" data-page="home">
+            <button class="pill-btn"><span class="pill-icon"><i class="fas fa-home"></i></span></button>
+            <span class="pill-label">Home</span>
+        </li>
+
+        <li class="pill-item" data-page="createprofile">
+            <button class="pill-btn"><span class="pill-icon"><i class="fas fa-user-edit"></i></span></button>
+            <span class="pill-label">Create</span>
+        </li>
+
+        <li class="pill-item" data-page="explore">
+            <button class="pill-btn"><span class="pill-icon"><i class="fas fa-search"></i></span></button>
+            <span class="pill-label">Explore</span>
+        </li>
+
+        <li class="pill-item profile-item" data-page="me">
+            <button class="pill-btn">
+                <img id="navPic" src="https://i.pravatar.cc/80" />
+            </button>
+            <span class="pill-label">Me</span>
+        </li>
+
+    </ul>
+
+    <div class="pill-highlight" id="pillHighlight">
+        <div class="pill-highlight-inner"><i class="fas fa-home"></i></div>
+    </div>
+</nav>
+
+
+
+<!-- ============== TEST CONTENT ============== -->
+<h1 style="text-align:center; margin-top:60px; color:#333;">Navbar Demo Page</h1>
+<p style="text-align:center;">This is just a trial page to preview the pill-style navbar.</p>
+
+
+
+
+<!-- ============== JS ============== -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const items = Array.from(document.querySelectorAll(".pill-item"));
+        const highlight = document.getElementById("pillHighlight");
+
+        function placeHighlightOn(item) {
+            const parentRect = item.parentElement.getBoundingClientRect();
+            const rect = item.getBoundingClientRect();
+            const leftPos = rect.left - parentRect.left + (rect.width/2);
+            highlight.style.left = `${leftPos}px`;
+
+            const icon = item.querySelector(".pill-icon i");
+            if (icon) {
+                highlight.querySelector(".pill-highlight-inner").innerHTML = icon.outerHTML;
+            }
+        }
+
+        // make "Home" active by default
+        const activeItem = items[0];
+        activeItem.classList.add("active");
+        placeHighlightOn(activeItem);
+
+        // clicking switches highlight
+        items.forEach(item => {
+            item.addEventListener("click", () => {
+                items.forEach(it => it.classList.remove("active"));
+                item.classList.add("active");
+                placeHighlightOn(item);
+            });
+        });
+
+        window.addEventListener("resize", () => {
+            const current = document.querySelector(".pill-item.active");
+            placeHighlightOn(current);
+        });
+    });
+</script>
+
+</body>
+</html>
