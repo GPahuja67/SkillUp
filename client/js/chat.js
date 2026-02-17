@@ -3,13 +3,24 @@ let conversationState = {
   step: 0
 };
 
-// socket only for REAL users
-const socket = io("http://localhost:5000");
+// socket
+const socket = io();
 
 // ----------- PARAMS -----------
 const params = new URLSearchParams(window.location.search);
-const room = params.get("profile") || "Skill Partner";
-const isDemoChat = room.startsWith("demo-");
+const otherUserId = params.get("profile");
+const myUserId = localStorage.getItem("userId");
+
+let room;
+let isDemoChat = false;
+
+// ----------- ROOM LOGIC -----------
+if (otherUserId && otherUserId.startsWith("demo-")) {
+  room = otherUserId;
+  isDemoChat = true;
+} else {
+  room = [myUserId, otherUserId].sort().join("_");
+}
 
 // ----------- PROFILE META (DEMO DATA MAP) -----------
 const demoProfileMap = {
@@ -20,11 +31,6 @@ const demoProfileMap = {
 };
 
 const header = document.getElementById("chatUser");
-const statusEl = document.createElement("div");
-statusEl.className = "chat-status";
-
-header.innerHTML = "";
-header.appendChild(statusEl);
 
 // ----------- HEADER SETUP -----------
 let chatName = "Skill Partner";
@@ -36,9 +42,7 @@ if (isDemoChat) {
     chatName = demo.name;
     chatPic = demo.pic;
   }
-  statusEl.innerText = "🟢 Online";
 } else {
-  statusEl.innerText = "🟢 Online";
   socket.emit("joinRoom", room);
 }
 
@@ -46,7 +50,7 @@ header.innerHTML = `
   <img src="${chatPic}" class="chat-header-pic" />
   <div>
     <div class="chat-title">${chatName}</div>
-    <div class="chat-status">${statusEl.innerText}</div>
+    <div class="chat-status">🟢 Online</div>
   </div>
 `;
 
@@ -68,28 +72,34 @@ function sendMessage() {
   saveHistory(text, "you");
 
   if (!isDemoChat) {
-    socket.emit("sendMessage", { room, sender: "You", message: text });
+    socket.emit("sendMessage", {
+      room,
+      sender: myUserId,
+      message: text
+    });
   }
 
   input.value = "";
 
-  // AI reply (demo OR fallback)
-  setTimeout(() => {
-    const reply = generateAIReply(chatName, text);
-    addMessage(reply, "other");
-    saveHistory(reply, "other");
-  }, 800);
+  // AI reply for demo
+  if (isDemoChat) {
+    setTimeout(() => {
+      const reply = generateAIReply(chatName, text);
+      addMessage(reply, "other");
+      saveHistory(reply, "other");
+    }, 800);
+  }
 }
 
-// ----------- RECEIVE (REAL USERS) -----------
+// ----------- RECEIVE -----------
 socket.on("receiveMessage", (data) => {
-  if (data.sender !== "You") {
+  if (data.room === room && data.sender !== myUserId) {
     addMessage(data.message, "other");
     saveHistory(data.message, "other");
   }
 });
 
-// ----------- MESSAGE UI -----------
+// ----------- UI MESSAGE -----------
 function addMessage(text, type) {
   const box = document.getElementById("messages");
 
@@ -108,7 +118,7 @@ function addMessage(text, type) {
   box.scrollTop = box.scrollHeight;
 }
 
-// ----------- PERSIST HISTORY (LOCAL) -----------
+// ----------- LOCAL HISTORY -----------
 function saveHistory(text, type) {
   const key = `chat_${room}`;
   const history = JSON.parse(localStorage.getItem(key) || "[]");
@@ -122,8 +132,8 @@ function saveHistory(text, type) {
   history.forEach(m => addMessage(m.text, m.type));
 })();
 
-// ----------- PREDICTABLE AI LOGIC -----------
-function generateAIReply(skill, userMsg) {
+// ----------- AI DEMO -----------
+function generateAIReply(skill) {
   const flows = [
     `Nice to meet you 😊 What’s your experience with ${skill}?`,
     `That’s interesting! What are you trying to achieve in ${skill}?`,

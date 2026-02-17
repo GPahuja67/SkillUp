@@ -1,4 +1,4 @@
-const socket = io("http://localhost:5000");
+const socket = io();
 
 const chatList = document.getElementById("chatList");
 const chatBox = document.getElementById("chatBox");
@@ -6,10 +6,13 @@ const header = document.getElementById("activeChatHeader");
 const input = document.getElementById("messageInput");
 const sendBtn = document.getElementById("sendBtn");
 
+const params = new URLSearchParams(window.location.search);
+const autoChatUser = params.get("chat");
+
 const userId = localStorage.getItem("userId");
 let activeRoom = null;
 
-/* TEMP DEMO USERS (later from DB) */
+/* TEMP DEMO USERS */
 const users = [
   { id: "u1", name: "Aarav", online: true },
   { id: "u2", name: "Simran", online: false },
@@ -33,7 +36,7 @@ function renderChatList() {
 
 function openChat(user) {
   activeRoom = [userId, user.id].sort().join("_");
-  header.innerText = user.name;
+  header.innerText = user.name || "Chat";
   chatBox.innerHTML = "";
   socket.emit("joinRoom", activeRoom);
 }
@@ -70,3 +73,7 @@ function addMessage(text, type) {
 }
 
 renderChatList();
+
+if (autoChatUser) {
+  openChat({ id: autoChatUser, name: "Chat" });
+}
